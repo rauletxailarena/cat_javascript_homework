@@ -1,28 +1,46 @@
 var app = function() {
 
-var newCat = document.createElement('ul');
-newCat.classList.add('cat');
+  addNewCat("Garfield", "Lasagna", "http://garfieldgo.com/images/GarfieldCurious.png");
 
-var catName = document.createElement('li');
-catName.textContent = 'Lopez';
+}
 
-var catDescription = document.createElement('li');
-catDescription.textContent = 'Stupid cat'
+var addNewCat = function(newName, newFavouriteFood, newPictureSource) {
 
-var catPictureList = document.createElement('li');
-var catPicture = document.createElement('img');
+  var newCat = document.createElement('ul');
+  newCat.classList.add('cat');
+  var catName = createCatName(newName);
+  var favouriteFood = createCatFavouriteFood(newFavouriteFood);
+  var catPictureList =  createCatPicture(newPictureSource);
 
-catPicture.width = '500'
-catPicture.src = "http://cdn.smosh.com/sites/default/files/legacy.images/smosh-pit/122010/ugly-cat-17.jpg"
-catPictureList.appendChild(catPicture)
+  newCat.appendChild(catName);
+  newCat.appendChild(favouriteFood);
+  newCat.appendChild(catPictureList);
 
-newCat.appendChild(catName);
-newCat.appendChild(catDescription);
-newCat.appendChild(catPictureList);
+  var cats = document.querySelector('#cats');
+  cats.appendChild(newCat)
+}
 
-var cats = document.querySelector('#cats');
-cats.appendChild(newCat)
+var createCatName = function(name){
+  var catName = document.createElement('li');
+  catName.textContent = name;
+  return catName;
+}
 
+var createCatFavouriteFood = function(favouriteFood){
+  var catFavouriteFood = document.createElement('li');
+  catFavouriteFood.textContent = favouriteFood;
+  return catFavouriteFood;
+}
+
+var createCatPicture = function(pictureSource){
+  var catPictureList = document.createElement('li');
+  var catPicture = document.createElement('img');
+
+  catPicture.width = '500';
+  catPicture.src = pictureSource;
+
+  catPictureList.appendChild(catPicture);
+  return catPictureList
 }
 
 window.addEventListener('DOMContentLoaded', app)
